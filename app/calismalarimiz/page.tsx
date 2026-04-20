@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 type SafeImageProps = {
   src: string;
@@ -34,56 +34,68 @@ function SafeImage({ src, alt, fallbackLabel = "Gorsel yuklenemedi" }: SafeImage
 
 export default function Calismalarimiz() {
   const [seciliFotograf, setSeciliFotograf] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  
   const medyaVideoMu = (dosyaAdi: string) => dosyaAdi.toLowerCase().endsWith(".mp4");
 
-  useLayoutEffect(() => {
-    if (!seciliFotograf) return;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || !seciliFotograf) return;
+    
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSeciliFotograf(null);
     };
+    
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKey);
     };
-  }, [seciliFotograf]);
+  }, [seciliFotograf, mounted]);
 
-  const oneCikacakNumaralar = [82, 88, 79, 76, 74, 61, 64, 60, 53, 54, 50, 51, 44, 43, 31, 25, 28, 11, 7];
-  const photos = Array.from({ length: 100 }, (_, i) => `livnipeyzaj_${i + 1}.jpg`);
+  const photos = useMemo(() => {
+    const oneCikacakNumaralar = [82, 88, 79, 76, 74, 61, 64, 60, 53, 54, 50, 51, 44, 43, 31, 25, 28, 11, 7];
+    const photoArray = Array.from({ length: 100 }, (_, i) => `livnipeyzaj_${i + 1}.jpg`);
 
-  // Verilen görseller ilk 19 sırayla birebir yer değiştirir.
-  oneCikacakNumaralar.forEach((numara, index) => {
-    const hedefIndex = index;
-    const kaynakIndex = photos.indexOf(`livnipeyzaj_${numara}.jpg`);
-    if (kaynakIndex !== -1) {
-      [photos[hedefIndex], photos[kaynakIndex]] = [photos[kaynakIndex], photos[hedefIndex]];
-    }
-  });
+    // Verilen görseller ilk 19 sırayla birebir yer değiştirir.
+    oneCikacakNumaralar.forEach((numara, index) => {
+      const hedefIndex = index;
+      const kaynakIndex = photoArray.indexOf(`livnipeyzaj_${numara}.jpg`);
+      if (kaynakIndex !== -1) {
+        [photoArray[hedefIndex], photoArray[kaynakIndex]] = [photoArray[kaynakIndex], photoArray[hedefIndex]];
+      }
+    });
 
-  const ekSwapCiftleri: Array<[number, number]> = [
-    [1, 54],
-    [3, 23],
-    [7, 19],
-    [8, 55],
-    [12, 86],
-  ];
-  ekSwapCiftleri.forEach(([a, b]) => {
-    // Bu aşama pozisyon bazlıdır (1-index): 1. sıradaki ile 54. sıradaki gibi.
-    const aIndex = a - 1;
-    const bIndex = b - 1;
-    if (aIndex >= 0 && bIndex >= 0 && aIndex < photos.length && bIndex < photos.length) {
-      [photos[aIndex], photos[bIndex]] = [photos[bIndex], photos[aIndex]];
-    }
-  });
+    const ekSwapCiftleri: Array<[number, number]> = [
+      [1, 54],
+      [3, 23],
+      [7, 19],
+      [8, 55],
+      [12, 86],
+    ];
+    ekSwapCiftleri.forEach(([a, b]) => {
+      const aIndex = a - 1;
+      const bIndex = b - 1;
+      if (aIndex >= 0 && bIndex >= 0 && aIndex < photoArray.length && bIndex < photoArray.length) {
+        [photoArray[aIndex], photoArray[bIndex]] = [photoArray[bIndex], photoArray[aIndex]];
+      }
+    });
 
-  const onuncuFotograf = photos[9];
-  photos[9] = "livnipeyzaj_10_video.mp4";
-  photos.push(onuncuFotograf, "livnipeyzaj_101.png");
+    const onuncuFotograf = photoArray[9];
+    photoArray[9] = "livnipeyzaj_10_video.mp4";
+    photoArray.push(onuncuFotograf, "livnipeyzaj_101.png");
 
-  // İstenen ek değişim: 102. sıradaki medya ile 19. sıradaki medyayı yer değiştir.
-  [photos[18], photos[101]] = [photos[101], photos[18]];
+    // İstenen ek değişim: 102. sıradaki medya ile 19. sıradaki medyayı yer değiştir.
+    [photoArray[18], photoArray[101]] = [photoArray[101], photoArray[18]];
+    
+    return photoArray;
+  }, []);
 
   return (
     <main className="min-h-screen font-sans bg-gray-50 pt-[100px]">
