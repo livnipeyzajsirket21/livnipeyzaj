@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://livnipeyzaj.com"),
   title: "Livni Peyzaj — Profesyonel Peyzaj Hizmetleri | Ankara",
   description:
-    "Ankara'da 10 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
+    "Ankara'da 20 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
   alternates: {
     canonical: "/",
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Livni Peyzaj",
     title: "Livni Peyzaj — Profesyonel Peyzaj Hizmetleri | Ankara",
     description:
-      "Ankara'da 10 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
+      "Ankara'da 20 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
     images: [
       {
         url: "/site-fotolar/hero-ana-1.png",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Livni Peyzaj — Profesyonel Peyzaj Hizmetleri | Ankara",
     description:
-      "Ankara'da 10 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
+      "Ankara'da 20 yılı aşkın tecrübesiyle profesyonel peyzaj tasarımı, bahçe düzenleme, sulama sistemleri ve bakım hizmetleri.",
     images: ["/site-fotolar/hero-ana-1.png"],
   },
 };

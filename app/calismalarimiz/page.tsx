@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 type SafeImageProps = {
   src: string;
@@ -36,7 +36,7 @@ export default function Calismalarimiz() {
   const [seciliFotograf, setSeciliFotograf] = useState<string | null>(null);
   const medyaVideoMu = (dosyaAdi: string) => dosyaAdi.toLowerCase().endsWith(".mp4");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!seciliFotograf) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";

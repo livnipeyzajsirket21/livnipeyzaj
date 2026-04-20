@@ -364,7 +364,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center relative z-10 w-full">
             <p className="text-[#d8ebe0] text-sm md:text-base font-light tracking-[0.3em] uppercase mb-6 flex items-center justify-center gap-3 drop-shadow-sm">
               <span className="w-8 h-[1px] bg-white/40 hidden sm:block"></span>
-              Ankara — 10 Yılı Aşkın Tecrübe
+              Ankara — 20 Yılı Aşkın Tecrübe
               <span className="w-8 h-[1px] bg-white/40 hidden sm:block"></span>
             </p>
             <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-md">
@@ -372,7 +372,7 @@ export default function Home() {
             </h2>
             <p className="text-white/95 text-lg md:text-xl mb-10 max-w-3xl mx-auto font-light leading-relaxed drop-shadow">
               Peyzaj tasarımı, uygulama ve bakım hizmetlerinde profesyonel çözümler sunuyoruz.<br className="hidden md:block" />
-              10 yılı aşkın deneyimimizle hayalinizdeki bahçeyi yaratıyoruz.
+              20 yılı aşkın deneyimimizle hayalinizdeki bahçeyi yaratıyoruz.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
               <a href="#iletisim" className="bg-[#183325] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#1d3729] transition border-0 shadow-lg flex items-center justify-center group">
@@ -406,10 +406,10 @@ export default function Home() {
         <section className="relative z-10 bg-white mt-12 sm:mt-16 md:mt-20 pt-6 sm:pt-8 pb-14 px-6 border-b border-gray-100">
           <div className="mx-auto grid max-w-4xl grid-cols-2 place-items-center gap-x-4 gap-y-10 text-center sm:gap-x-8 md:grid-cols-4 md:gap-8">
             {[
-              { sayi: "10+", label: "Yıllık Tecrübe" },
-              { sayi: "200+", label: "Tamamlanan Proje" },
-              { sayi: "40+", label: "Referans" },
-              { sayi: "100+", label: "Memnun Müşteri" },
+              { sayi: "20+", label: "Yıllık Tecrübe" },
+              { sayi: "300+", label: "Tamamlanan Proje" },
+              { sayi: "50+", label: "Referans" },
+              { sayi: "250+", label: "Memnun Müşteri" },
             ].map((item) => (
               <div
                 key={item.label}
@@ -458,7 +458,7 @@ export default function Home() {
                   <div>
                     <h3 className="text-white font-semibold text-base mb-2">Kanıtlanmış Deneyim</h3>
                     <p className="text-[#a4c2b1] text-sm leading-relaxed font-light">
-                      10 yılı aşkın tecrübemizle Ankara&#39;nın en prestijli peyzaj projelerini hayata geçirdik. Her projede mükemmeliği hedefleriz.
+                      20 yılı aşkın tecrübemizle Ankara&#39;nın en prestijli peyzaj projelerini hayata geçirdik. Her projede mükemmeliği hedefleriz.
                     </p>
                   </div>
                 </div>
