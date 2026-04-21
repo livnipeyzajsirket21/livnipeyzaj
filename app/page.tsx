@@ -72,6 +72,7 @@ const HERO_ARKA_PLAN = [
 ] as const;
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
   const [menuAcik, setMenuAcik] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
   const [navSolid, setNavSolid] = useState(false);
@@ -85,6 +86,10 @@ export default function Home() {
     alanTipi: "",
   });
   const medyaVideoMu = (dosyaAdi: string) => dosyaAdi.toLowerCase().endsWith(".mp4");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -308,7 +313,7 @@ export default function Home() {
           </button>
         </nav>
 
-        {menuAcik && (
+        {mounted && menuAcik && (
           <div className="fixed top-[80px] left-0 right-0 z-40 bg-white border-b border-gray-100 flex flex-col items-center gap-5 py-6 md:hidden text-gray-700 font-medium shadow-lg">
             <button type="button" onClick={scrollToTop} className="hover:text-green-700 transition">
               Ana Sayfa
@@ -889,7 +894,7 @@ export default function Home() {
         </footer>
 
         {/* LİGHTBOX (Fotoğraf Büyütme Modalı) */}
-        {seciliFotograf && (
+        {mounted && seciliFotograf && (
           <div
             className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-8 bg-black/90 backdrop-blur-sm"
             role="dialog"

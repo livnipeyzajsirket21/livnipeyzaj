@@ -172,7 +172,7 @@ export default function Calismalarimiz() {
       </section>
 
       {/* LİGHTBOX (Fotoğraf Büyütme Modalı) */}
-      {seciliFotograf && (
+      {mounted && seciliFotograf && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-8 bg-black/90 backdrop-blur-sm"
           role="dialog"
