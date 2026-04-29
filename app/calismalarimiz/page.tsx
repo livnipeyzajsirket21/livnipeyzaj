@@ -3,13 +3,59 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 
+// Belirli görsellerin referans isimleri mapping
+const GORSEL_REFERANS_MAP: { [key: number]: string } = {
+  0: "Ankara İncek Villaları",
+  2: "Ankara İncek Villaları",
+  8: "Ankara İncek Villaları",
+  9: "Çubuk Üretim Tesisi",
+  10: "Ceza Tevfik Evleri Genel Müdürlüğü",
+  12: "Ankara İncek Villaları",
+  13: "Ankara İncek Villaları",
+  14: "Ankara İncek Villaları",
+  17: "Ankara İncek Villaları",
+  25: "Ceza Tevfik Evleri Genel Müdürlüğü",
+  50: "Ankara İncek Villaları",
+  89: "Çubuk Üretim Tesisi",
+  90: "Çubuk Üretim Tesisi",
+  91: "Çubuk Üretim Tesisi",
+  92: "Çubuk Üretim Tesisi",
+  93: "Çubuk Üretim Tesisi",
+  94: "Çubuk Üretim Tesisi",
+  95: "Çubuk Üretim Tesisi",
+};
+
+// Referanslar listesi (çalışmalarımız'daki ilk 19 fotoğraf ile eşleştirilecek)
+const REFERANSLAR = [
+  "Ankara İncek Villaları", // 0
+  "Malatya Hekimhan Toki", // 1
+  "Ankara İncek Villaları", // 2
+  "Ankara BMS Kazan", // 3
+  "Ankara Bağdaşanlar Sitesi", // 4
+  "Ankara Ata Erkek Yurtları", // 5
+  "Ankara Birlik Mahhallesi Site", // 6
+  "Ankara Eryaman Öz Ceviz Ana Okulları", // 7
+  "Ankara İncek Villaları", // 8
+  "Ankara İncek Villaları", // 9
+  "Ceza Tevfik Evleri Genel Müdürlüğü", // 10
+  "Çevik Karnal Sitesi Yapısal Kilitli Parke Taşı ve Bordur Taşı İşi", // 11
+  "Ankara İncek Villaları", // 12
+  "Ankara İncek Villaları", // 13
+  "Ankara İncek Villaları", // 14
+  "Ankara Royal Rezidans Gazi Osman Paşa", // 15
+  "Girişim Uuropawer Elektirik AŞ. Saray Kazan - Bitkisel proje", // 16
+  "Ankara İncek Villaları", // 17
+  "Sağlık Bilimleri Üniversitesi Kütüphanesi - Rulo Çim", // 18
+];
+
 type SafeImageProps = {
   src: string;
   alt: string;
   fallbackLabel?: string;
+  priority?: boolean;
 };
 
-function SafeImage({ src, alt, fallbackLabel = "Gorsel yuklenemedi" }: SafeImageProps) {
+function SafeImage({ src, alt, fallbackLabel = "Gorsel yuklenemedi", priority = false }: SafeImageProps) {
   const [hasError, setHasError] = useState(false);
 
   if (hasError) {
@@ -25,6 +71,7 @@ function SafeImage({ src, alt, fallbackLabel = "Gorsel yuklenemedi" }: SafeImage
       src={src}
       alt={alt}
       fill
+      priority={priority}
       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 33vw, 25vw"
       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       onError={() => setHasError(true)}
@@ -150,21 +197,24 @@ export default function Calismalarimiz() {
                   <SafeImage
                     src={`/site-fotolar/${imgName}`}
                     alt={`Livni Peyzaj Proje ${index + 1}`}
+                    priority={index < 4}
                     fallbackLabel="Proje gorseli yakinda eklenecek"
                   />
                 )}
 
                 {/* Çok Daha Hafif ve Şık Hover Efekti */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <p className="text-white font-semibold text-lg tracking-wide drop-shadow-md">
-                      Proje Fotoğrafı #{index + 1}
-                    </p>
-                    <p className="text-white/80 text-sm mt-1 font-light tracking-widest uppercase">
-                      Peyzaj Uygulaması
-                    </p>
+                {GORSEL_REFERANS_MAP[index] && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <p className="text-white font-semibold text-lg tracking-wide drop-shadow-md">
+                        {GORSEL_REFERANS_MAP[index]}
+                      </p>
+                      <p className="text-white/80 text-sm mt-1 font-light tracking-widest uppercase">
+                        Peyzaj Uygulaması
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             ))}
           </div>
