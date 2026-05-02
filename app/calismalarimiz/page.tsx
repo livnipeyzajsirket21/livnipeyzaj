@@ -73,6 +73,8 @@ function SafeImage({ src, alt, fallbackLabel = "Gorsel yuklenemedi", priority = 
       fill
       priority={priority}
       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 33vw, 25vw"
+      quality={75}
+      loading={priority ? "eager" : "lazy"}
       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       onError={() => setHasError(true)}
     />
@@ -261,7 +263,7 @@ export default function Calismalarimiz() {
                 width={1920}
                 height={1440}
                 sizes="100vw"
-                quality={90}
+                quality={85}
                 className="max-h-[min(92vh,1200px)] w-auto max-w-full object-contain rounded-lg shadow-2xl"
                 priority
               />

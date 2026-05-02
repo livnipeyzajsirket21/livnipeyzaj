@@ -1,14 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
-
-// Hero arka planı — sıra: havuz/peyzaj, çim/şehir, gece teras
-const HERO_ARKA_PLAN = [
-  "/site-fotolar/hero-ana-1.png",
-  "/site-fotolar/hero-ana-2.png",
-  "/site-fotolar/hero-ana-3.png",
-] as const;
 
 // Devam ediyor'ları başa al
 const referanslar = [
@@ -53,67 +46,21 @@ const referanslar = [
 
 export default function Referanslar() {
   const [seciliProjeFotosu, setSeciliProjeFotosu] = useState<number[] | null>(null);
-  const [heroSlide, setHeroSlide] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setHeroSlide((i) => (i + 1) % HERO_ARKA_PLAN.length);
-    }, 6000);
-    return () => clearInterval(t);
-  }, []);
   return (
     <main className="min-h-screen bg-gray-50 font-sans">
-      {/* HERO — Hero carousel başlığı ile birlikte */}
-      <section className="relative min-h-[min(60vh,600px)] flex items-center py-24 px-6 text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {HERO_ARKA_PLAN.map((src, i) => (
-            <div
-              key={src}
-              className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
-                i === heroSlide ? "opacity-100 z-[1]" : "opacity-0 z-0"
-              }`}
-              aria-hidden={i !== heroSlide}
-            >
-              <Image
-                src={src}
-                alt=""
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-cover object-center"
-              />
-            </div>
-          ))}
-          <div
-            className="absolute inset-0 z-[2] bg-gradient-to-b from-black/60 via-black/45 to-black/35"
-            aria-hidden
-          />
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10 w-full">
-          <p className="text-[#8ba797] text-xs font-semibold tracking-[0.2em] mb-3 uppercase drop-shadow-sm">
+      {/* HEADER */}
+      <section className="bg-[#183325] py-24 px-6 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-[#8ba797] text-xs font-semibold tracking-[0.2em] mb-3 uppercase">
             Referanslar
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-md">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Bize Güvenenler
           </h1>
           <div className="w-12 h-[2px] bg-[#618671] mx-auto mb-6 rounded-full"></div>
-          <p className="text-[#a4c2b1] text-lg max-w-2xl mx-auto font-light drop-shadow">
+          <p className="text-[#a4c2b1] text-lg max-w-2xl mx-auto font-light">
             Tamamladığımız ve devam eden projelerimizden bazıları. Her proje bizim için bir referanstır.
           </p>
-          <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Hero görselleri">
-            {HERO_ARKA_PLAN.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                role="tab"
-                aria-selected={i === heroSlide}
-                className={`h-2 rounded-full transition-all ${
-                  i === heroSlide ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/60"
-                }`}
-                onClick={() => setHeroSlide(i)}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -155,16 +102,19 @@ export default function Referanslar() {
         </div>
       </section>
 
-      {/* MODAL - Seçilen Referansın Görselleri */}
+      {/* MODAL - Seçilen Referansın Görselleri (Bottom Sheet) */}
       {seciliProjeFotosu && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-8 bg-black/80 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setSeciliProjeFotosu(null)}
-        >
+        <>
+          {/* Backdrop */}
           <div
-            className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl"
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            onClick={() => setSeciliProjeFotosu(null)}
+          />
+          {/* Sheet Dialog */}
+          <div
+            className="fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-3xl shadow-2xl max-h-[90vh] flex flex-col"
+            role="dialog"
+            aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-white border-b border-gray-100 px-6 sm:px-10 py-6 flex items-center justify-between rounded-t-3xl">
@@ -174,14 +124,14 @@ export default function Referanslar() {
               <button
                 type="button"
                 onClick={() => setSeciliProjeFotosu(null)}
-                className="text-gray-400 hover:text-gray-600 transition text-2xl"
+                className="text-gray-400 hover:text-gray-600 transition text-2xl flex-shrink-0"
                 aria-label="Kapat"
               >
                 ✕
               </button>
             </div>
 
-            <div className="px-6 sm:px-10 py-8 max-h-[calc(100vh-200px)] overflow-y-auto">
+            <div className="px-6 sm:px-10 py-8 overflow-y-auto flex-1">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {seciliProjeFotosu.map((gorselIdx, idx) => {
                   const fileName = gorselIdx < 100 ? `livnipeyzaj_${gorselIdx + 1}.jpg` : 
@@ -203,8 +153,10 @@ export default function Referanslar() {
                           src={`/site-fotolar/${fileName}`}
                           alt={`Proje görseli ${gorselIdx + 1}`}
                           fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 33vw, 25vw"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           className="w-full h-full object-cover"
+                          quality={75}
+                          loading="lazy"
                         />
                       )}
                     </div>
@@ -213,7 +165,7 @@ export default function Referanslar() {
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* CTA */}
