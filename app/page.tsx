@@ -439,7 +439,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-4xl grid-cols-2 place-items-center gap-x-4 gap-y-10 text-center sm:gap-x-8 md:grid-cols-3 md:gap-8">
             {[
               { sayi: "20+", label: "Yıllık Tecrübe" },
-              { sayi: "300+", label: "Tamamlanan Proje" },
+              { sayi: "400+", label: "Tamamlanan Proje" },
               { sayi: "%100", label: "Memnun Müşteri" },
             ].map((item) => (
               <div
