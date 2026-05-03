@@ -436,12 +436,11 @@ export default function Home() {
 
         {/* RAKAMLAR — hero gradient ile birleşir; üst boşlukla beyaz panel biraz aşağıda */}
         <section className="relative z-10 bg-white mt-12 sm:mt-16 md:mt-20 pt-6 sm:pt-8 pb-14 px-6 border-b border-gray-100">
-          <div className="mx-auto grid max-w-4xl grid-cols-2 place-items-center gap-x-4 gap-y-10 text-center sm:gap-x-8 md:grid-cols-4 md:gap-8">
+          <div className="mx-auto grid max-w-4xl grid-cols-2 place-items-center gap-x-4 gap-y-10 text-center sm:gap-x-8 md:grid-cols-3 md:gap-8">
             {[
               { sayi: "20+", label: "Yıllık Tecrübe" },
               { sayi: "300+", label: "Tamamlanan Proje" },
-              { sayi: "50+", label: "Referans" },
-              { sayi: "250+", label: "Memnun Müşteri" },
+              { sayi: "%100", label: "Memnun Müşteri" },
             ].map((item) => (
               <div
                 key={item.label}
