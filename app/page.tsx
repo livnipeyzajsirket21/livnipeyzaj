@@ -336,7 +336,12 @@ export default function Home() {
                   ? "bg-[#183325] text-white px-5 py-2.5 rounded-full hover:bg-[#1d3729] transition shadow-sm whitespace-nowrap"
                   : "bg-white/15 backdrop-blur-md border border-white/35 text-white px-5 py-2.5 rounded-full hover:bg-white/25 transition whitespace-nowrap drop-shadow-sm"
               }
+            >
               Ücretsiz Keşif & Hemen Ara
+            </a>
+          </div>
+
+          <button
             type="button"
             className={`lg:hidden text-2xl outline-none p-2 -mr-2 ${navSolid ? "text-gray-700" : "text-white drop-shadow-md"}`}
             onClick={() => setMenuAcik(!menuAcik)}
