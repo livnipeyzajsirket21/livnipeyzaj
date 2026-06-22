@@ -181,7 +181,7 @@ export default function Referanslar() {
             href="/#iletisim"
             className="inline-flex items-center bg-[#618671] hover:bg-[#4a5d4f] text-white font-semibold px-8 py-4 rounded-full transition"
           >
-            Teklif İste
+            Ücretsiz Keşif & Hemen Ara
           </Link>
         </div>
       </section>
