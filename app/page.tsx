@@ -91,12 +91,20 @@ export default function Home() {
 
   const trackConversionClick = (event: React.MouseEvent<HTMLAnchorElement>, url: string) => {
     event.preventDefault();
-    const win = window as any;
+    const win = window as Window & { gtag_report_conversion?: (url?: string) => void };
     if (typeof win.gtag_report_conversion === "function") {
       win.gtag_report_conversion(url);
     } else {
       window.location.href = url;
     }
+  };
+
+  const handlePrimaryCtaClick = () => {
+    const win = window as Window & { gtag_report_conversion?: (url?: string) => void };
+    if (typeof win.gtag_report_conversion === "function") {
+      win.gtag_report_conversion();
+    }
+    setTeklifFormAcik(true);
   };
 
   useEffect(() => {
@@ -419,7 +427,7 @@ export default function Home() {
               20 yılı aşkın deneyimimizle hayalinizdeki bahçeyi yaratıyoruz.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-                <button type="button" onClick={() => setTeklifFormAcik(true)} className="bg-[#183325] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#1d3729] transition border-0 shadow-lg flex items-center justify-center group">
+                <button type="button" onClick={handlePrimaryCtaClick} className="bg-[#183325] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#1d3729] transition border-0 shadow-lg flex items-center justify-center group">
                 Ücretsiz Keşif & Hemen Ara
                 <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -882,17 +890,7 @@ export default function Home() {
                   <h3 className="font-bold text-[#183325] mb-6 text-sm md:text-base">Bizi Takip Edin</h3>
                   <div className="flex flex-col gap-4">
 
-                    {/* Instagram */}
-                    <a href="https://instagram.com/livni.peyzaj" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition group bg-[#fdfdfd]">
-                      <div className="bg-[#f0f3f1] p-3 rounded-xl text-[#3b5947]">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                      </div>
-                      <span className="text-[#183325] font-medium text-sm">@livni.peyzaj</span>
-                    </a>
+                    {/* Instagram link removed per request */}
 
                   </div>
                 </div>

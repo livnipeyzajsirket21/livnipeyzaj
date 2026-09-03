@@ -82,6 +82,18 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'AW-18118963782');
+              window.gtag_report_conversion = function (url) {
+                var callback = function () {
+                  if (typeof url !== 'undefined') {
+                    window.location = url;
+                  }
+                };
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-18118963782/RGDACM233MccEMbk5b9D',
+                  'event_callback': callback
+                });
+                return false;
+              };
             `,
           }}
         />
