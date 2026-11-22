@@ -5,8 +5,9 @@ import Image from "next/image";
 
 // Devam ediyor'ları başa al
 const referanslar = [
-  { proje: "Petrotek Global Mak. San. Gölbaşı Yapısal Bitkisel Kuru Peyzaj", durum: "Devam Ediyor", id: "petrotek", gorseller: [] },
-  { proje: "Özver İnşaat.A.Ş. Çubuk Üretim Tesisi Peyzaj işi Ankara", durum: "Devam Ediyor", id: "cubuk", gorseller: [93, 92, 91, 90, 89, 9, 88] },
+  { proje: "Kırıkkale belediyesi peker inşaat enerji 4 adet park yapımı 25.000m2 otomatik sulama sistemi çim ekimi ve bitkileri", durum: "Devam Ediyor", id: "kirikkale-peker", gorseller: [] },
+  { proje: "Petrotek Global Mak. San. Gölbaşı Yapısal Bitkisel Kuru Peyzaj", durum: "Bitti", id: "petrotek", gorseller: [] },
+  { proje: "Özver İnşaat.A.Ş. Çubuk Üretim Tesisi Peyzaj işi Ankara", durum: "Bitti", id: "cubuk", gorseller: [93, 92, 91, 90, 89, 9, 88] },
   { proje: "Malatya Hekimhan Toki", durum: "Bitti", id: "malatya", gorseller: [] },
   { proje: "Van İskele Yolu Belediye", durum: "Bitti", id: "van", gorseller: [] },
   { proje: "Ankara Teksif İncesu", durum: "Bitti", id: "teksif", gorseller: [] },
